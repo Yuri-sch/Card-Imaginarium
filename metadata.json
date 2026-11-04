@@ -1,0 +1,8 @@
+{
+  "name": "Card Imaginarium",
+  "description": "Crie cartas colecionáveis mágicas personalizadas no estilo TCG / Magic: The Gathering utilizando Inteligência Artificial Multimodal.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

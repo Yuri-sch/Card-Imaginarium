@@ -1,0 +1,571 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-heading: 'Cinzel', serif;
+    --font-flavor: 'Cormorant Garamond', Georgia, serif;
+    --font-medieval: 'MedievalSharp', cursive;
+  }
+}
+
+.font-card-title {
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.03em;
+}
+
+.font-card-flavor {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+}
+
+.font-card-medieval {
+  font-family: 'MedievalSharp', cursive;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/* Holographic / Prismatic foil animation for Mítico */
+@keyframes holographic-shift {
+  0% {
+    background-position: 0% 50%;
+    filter: hue-rotate(0deg) brightness(1.1);
+  }
+  50% {
+    background-position: 100% 50%;
+    filter: hue-rotate(180deg) brightness(1.25);
+  }
+  100% {
+    background-position: 0% 50%;
+    filter: hue-rotate(360deg) brightness(1.1);
+  }
+}
+
+.foil-holographic {
+  background: linear-gradient(
+    135deg,
+    #ff007f 0%,
+    #00ffff 20%,
+    #ffe600 40%,
+    #9333ea 60%,
+    #3b82f6 80%,
+    #ff007f 100%
+  );
+  background-size: 300% 300%;
+  animation: holographic-shift 7s ease infinite;
+}
+
+@keyframes holographic-iridescent {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+@keyframes shimmer-sweep {
+  0% {
+    transform: translateX(-100%) rotate(25deg);
+  }
+  100% {
+    transform: translateX(200%) rotate(25deg);
+  }
+}
+
+/* 1. RARO: Reflexo metálico sutil e discreto (máx 0.12 de opacidade) */
+@keyframes sapphire-subtle-sheen {
+  0% {
+    background-position: -200% -200%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 200% 200%;
+  }
+}
+
+.sheen-sapphire-subtle {
+  background: linear-gradient(
+    115deg,
+    transparent 20%,
+    rgba(56, 189, 248, 0.08) 35%,
+    rgba(255, 255, 255, 0.12) 48%,
+    rgba(125, 211, 252, 0.12) 52%,
+    rgba(255, 255, 255, 0.12) 56%,
+    rgba(56, 189, 248, 0.08) 65%,
+    transparent 80%
+  );
+  background-size: 250% 250%;
+  animation: sapphire-subtle-sheen 6s ease-in-out infinite;
+  opacity: 0.12;
+}
+
+.foil-traditional {
+  background: linear-gradient(
+    115deg,
+    transparent 20%,
+    rgba(56, 189, 248, 0.1) 35%,
+    rgba(255, 255, 255, 0.25) 50%,
+    rgba(56, 189, 248, 0.1) 65%,
+    transparent 80%
+  );
+  background-size: 250% 250%;
+  animation: sapphire-subtle-sheen 5s ease-in-out infinite;
+}
+
+/* Ambient Starlight Glitter (Twinkles continuously across Épico cards) */
+@keyframes starlight-twinkle {
+  0%, 100% {
+    background-position: 0% 0%, 50% 50%, 25% 25%, 75% 75%;
+    opacity: 0.22;
+  }
+  50% {
+    background-position: 100% 100%, 0% 100%, 80% 40%, 20% 80%;
+    opacity: 0.35;
+  }
+}
+
+.glitter-starlight {
+  background-image: 
+    radial-gradient(circle at 25% 30%, rgba(255, 255, 255, 0.95) 1.2px, transparent 2px),
+    radial-gradient(circle at 75% 65%, rgba(192, 132, 252, 0.95) 1.5px, transparent 2.5px),
+    radial-gradient(circle at 45% 85%, rgba(255, 255, 255, 0.9) 1px, transparent 2px),
+    radial-gradient(circle at 80% 20%, rgba(244, 114, 182, 0.95) 1.3px, transparent 2.5px);
+  background-size: 60px 60px, 80px 80px, 70px 70px, 50px 50px;
+  animation: starlight-twinkle 6s ease-in-out infinite;
+  mix-blend-mode: screen;
+}
+
+/* Ambient Gold Luster (Sweeps continuously across Lendário cards) */
+@keyframes gold-luster-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.foil-card-gold {
+  background: linear-gradient(
+    125deg,
+    transparent 15%,
+    rgba(234, 179, 8, 0.15) 30%,
+    rgba(254, 240, 138, 0.3) 48%,
+    rgba(245, 158, 11, 0.25) 55%,
+    rgba(254, 240, 138, 0.25) 62%,
+    transparent 80%
+  );
+  background-size: 250% 250%;
+  animation: gold-luster-shift 6s ease-in-out infinite;
+  mix-blend-mode: overlay;
+}
+
+/* Continuous diagonal foil light sweep (Occurs continuously on all foil cards independent of mouse) */
+@keyframes continuous-foil-sweep {
+  0% {
+    transform: translateX(-130%) rotate(25deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.25;
+  }
+  45% {
+    transform: translateX(180%) rotate(25deg);
+    opacity: 0.25;
+  }
+  50%, 100% {
+    transform: translateX(180%) rotate(25deg);
+    opacity: 0;
+  }
+}
+
+.card-ambient-foil-sweep {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.18) 48%,
+    rgba(255, 255, 255, 0.35) 50%,
+    rgba(255, 255, 255, 0.18) 52%,
+    transparent 65%
+  );
+  pointer-events: none;
+  animation: continuous-foil-sweep 5.5s ease-in-out infinite;
+}
+
+/* 2. ÉPICO: Efeito Secret Rare de Yu-Gi-Oh! (Exclusivamente no Art Box) */
+.interactive-foil-epic {
+  /* Linhas diagonais paralelas finas em 45 graus + micro-losangos e glitter estelar */
+  background-image: 
+    repeating-linear-gradient(
+      45deg,
+      transparent 0px,
+      transparent 5px,
+      rgba(255, 255, 255, 0.45) 6.5px,
+      rgba(192, 132, 252, 0.7) 8px,
+      rgba(244, 114, 182, 0.55) 9.5px,
+      rgba(56, 189, 248, 0.55) 11px,
+      transparent 13px,
+      transparent 19px
+    ),
+    radial-gradient(circle at 20% 25%, rgba(255, 255, 255, 0.95) 1px, transparent 2px),
+    radial-gradient(circle at 75% 20%, rgba(240, 171, 252, 0.95) 1.2px, transparent 2.5px),
+    radial-gradient(circle at 45% 65%, rgba(255, 255, 255, 0.95) 1px, transparent 2px),
+    radial-gradient(circle at 85% 75%, rgba(192, 132, 252, 0.95) 1.2px, transparent 2.5px),
+    radial-gradient(circle at 15% 80%, rgba(255, 255, 255, 0.9) 1px, transparent 2px),
+    radial-gradient(circle at 60% 40%, rgba(255, 255, 255, 0.95) 1.2px, transparent 2.5px);
+  background-size: 75px 75px, 60px 60px, 80px 80px, 50px 50px, 90px 90px, 70px 70px, 65px 65px;
+  mix-blend-mode: color-dodge;
+  pointer-events: none;
+  transition: opacity 0.3s ease-out;
+}
+
+/* LENDÁRIO: Efeito Foil Dourado Interativo Reativo ao Mouse no Art Box */
+.interactive-foil-legendary {
+  /* Prisma e reflexo dourado 24k + micro-fagulhas em ouro */
+  background-image:
+    repeating-linear-gradient(
+      115deg,
+      transparent 0px,
+      transparent 10px,
+      rgba(254, 240, 138, 0.45) 14px,
+      rgba(245, 158, 11, 0.6) 18px,
+      rgba(254, 240, 138, 0.45) 22px,
+      transparent 26px,
+      transparent 38px
+    ),
+    radial-gradient(circle at 25% 30%, rgba(254, 240, 138, 0.95) 1.2px, transparent 2.5px),
+    radial-gradient(circle at 70% 25%, rgba(251, 191, 36, 0.95) 1.5px, transparent 3px),
+    radial-gradient(circle at 40% 70%, rgba(255, 255, 255, 0.95) 1px, transparent 2px),
+    radial-gradient(circle at 80% 75%, rgba(245, 158, 11, 0.95) 1.2px, transparent 2.5px);
+  background-size: 100px 100px, 65px 65px, 85px 85px, 55px 55px, 95px 95px;
+  mix-blend-mode: color-dodge;
+  pointer-events: none;
+  transition: opacity 0.3s ease-out;
+}
+
+/* MÍTICO: Efeito Foil Holográfico Prismático Arco-Íris Interativo no Art Box */
+.interactive-foil-mythic {
+  /* Feixes espectrais multicromáticos + linhas de difração prismática */
+  background-image:
+    linear-gradient(
+      115deg,
+      transparent 10%,
+      rgba(255, 0, 128, 0.4) 25%,
+      rgba(0, 255, 255, 0.4) 40%,
+      rgba(255, 230, 0, 0.4) 55%,
+      rgba(147, 51, 234, 0.4) 70%,
+      transparent 85%
+    ),
+    repeating-linear-gradient(
+      45deg,
+      transparent 0px,
+      transparent 6px,
+      rgba(255, 255, 255, 0.45) 7.5px,
+      rgba(236, 72, 153, 0.6) 9.5px,
+      rgba(56, 189, 248, 0.6) 11.5px,
+      transparent 13.5px,
+      transparent 19px
+    ),
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.95) 1.2px, transparent 2.5px),
+    radial-gradient(circle at 75% 30%, rgba(240, 171, 252, 0.95) 1.5px, transparent 3px),
+    radial-gradient(circle at 35% 75%, rgba(56, 189, 248, 0.95) 1.2px, transparent 2.5px),
+    radial-gradient(circle at 80% 80%, rgba(251, 191, 36, 0.95) 1.2px, transparent 2.5px);
+  background-size: 250% 250%, 80px 80px, 70px 70px, 90px 90px, 60px 60px, 80px 80px;
+  mix-blend-mode: color-dodge;
+  pointer-events: none;
+  transition: opacity 0.3s ease-out;
+}
+
+/* 3. LENDÁRIO: 24k Gold & Aura Mística Dourada Suavizada (~45% de redução) */
+@keyframes legendary-aura-pulse {
+  0%, 100% {
+    box-shadow: 
+      0 0 10px rgba(234, 179, 8, 0.2),
+      0 0 20px rgba(245, 158, 11, 0.12),
+      0 20px 45px rgba(0, 0, 0, 0.85);
+  }
+  50% {
+    box-shadow: 
+      0 0 18px rgba(254, 240, 138, 0.4),
+      0 0 35px rgba(234, 179, 8, 0.25),
+      0 0 50px rgba(217, 119, 6, 0.15),
+      0 20px 50px rgba(0, 0, 0, 0.9);
+  }
+}
+
+@keyframes golden-sheen {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.aura-legendary {
+  animation: legendary-aura-pulse 4s ease-in-out infinite;
+}
+
+.border-gold-24k {
+  background: linear-gradient(
+    135deg,
+    #78350f 0%,
+    #b45309 15%,
+    #f59e0b 30%,
+    #fef08a 45%,
+    #f59e0b 60%,
+    #92400e 75%,
+    #fef9c3 88%,
+    #78350f 100%
+  );
+  background-size: 200% 200%;
+  animation: golden-sheen 6s ease infinite;
+}
+
+.art-box-gold-aura {
+  box-shadow: 
+    0 0 8px rgba(234, 179, 8, 0.35),
+    inset 0 0 5px rgba(254, 240, 138, 0.2);
+}
+
+/* 4. MÍTICO: Mesma estrutura do Lendário, em paleta Arco-Íris / Prismática */
+@keyframes mythic-aura-pulse {
+  0%, 100% {
+    box-shadow: 
+      0 0 10px rgba(236, 72, 153, 0.22),
+      0 0 20px rgba(59, 130, 246, 0.14),
+      0 20px 45px rgba(0, 0, 0, 0.85);
+  }
+  33% {
+    box-shadow: 
+      0 0 18px rgba(168, 85, 247, 0.38),
+      0 0 35px rgba(236, 72, 153, 0.24),
+      0 0 50px rgba(59, 130, 246, 0.15),
+      0 20px 50px rgba(0, 0, 0, 0.9);
+  }
+  66% {
+    box-shadow: 
+      0 0 18px rgba(56, 189, 248, 0.38),
+      0 0 35px rgba(52, 211, 153, 0.24),
+      0 0 50px rgba(251, 191, 36, 0.15),
+      0 20px 50px rgba(0, 0, 0, 0.9);
+  }
+}
+
+.aura-mythic {
+  animation: mythic-aura-pulse 4.5s ease-in-out infinite;
+}
+
+@keyframes prismatic-sheen {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.border-prismatic-metallic {
+  background: linear-gradient(
+    135deg,
+    #9333ea 0%,
+    #ec4899 18%,
+    #f59e0b 36%,
+    #10b981 54%,
+    #06b6d4 72%,
+    #3b82f6 88%,
+    #9333ea 100%
+  );
+  background-size: 250% 250%;
+  animation: prismatic-sheen 7s ease infinite;
+}
+
+.art-box-mythic-aura {
+  box-shadow: 
+    0 0 8px rgba(236, 72, 153, 0.35),
+    inset 0 0 5px rgba(56, 189, 248, 0.25);
+}
+
+/* Specialized Rarity Oval Security Stamps */
+.silver-stamp-gradient {
+  background: linear-gradient(
+    135deg,
+    #94a3b8 0%,
+    #f8fafc 30%,
+    #38bdf8 55%,
+    #cbd5e1 75%,
+    #64748b 100%
+  );
+  background-size: 200% 200%;
+  animation: holographic-iridescent 4s ease infinite;
+}
+
+.amethyst-stamp-gradient {
+  background: linear-gradient(
+    135deg,
+    #7e22ce 0%,
+    #f3e8ff 30%,
+    #c084fc 50%,
+    #e879f9 70%,
+    #3b0764 100%
+  );
+  background-size: 200% 200%;
+  animation: holographic-iridescent 4s ease infinite;
+}
+
+.gold-stamp-gradient {
+  background: linear-gradient(
+    135deg,
+    #b45309 0%,
+    #fef08a 35%,
+    #eab308 55%,
+    #fffbeb 75%,
+    #78350f 100%
+  );
+  background-size: 200% 200%;
+  animation: holographic-iridescent 4s ease infinite;
+}
+
+.holo-stamp-gradient {
+  background: linear-gradient(
+    135deg,
+    #e2e8f0 0%,
+    #ffd700 20%,
+    #38bdf8 40%,
+    #ec4899 60%,
+    #a855f7 80%,
+    #fef08a 100%
+  );
+  background-size: 200% 200%;
+  animation: holographic-iridescent 5s ease infinite;
+}
+
+.card-shine {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.28) 50%,
+    transparent 65%
+  );
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.group:hover .card-shine {
+  opacity: 1;
+  animation: shimmer-sweep 2.5s infinite;
+}
+
+/* MTG M15 Authentic Plaque & Parchment Styles */
+.mtg-plate-parchment {
+  background: linear-gradient(
+    180deg,
+    #fdfcf9 0%,
+    #f4efe4 35%,
+    #e6dfd1 75%,
+    #d8d0bf 100%
+  );
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.95),
+    inset 0 -1.5px 2px rgba(0, 0, 0, 0.25),
+    0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.mtg-rules-parchment {
+  background: linear-gradient(
+    180deg,
+    #f7f3ea 0%,
+    #ede6d7 45%,
+    #dfd6c4 85%,
+    #d1c7b1 100%
+  );
+  box-shadow:
+    inset 0 3px 6px rgba(0, 0, 0, 0.35),
+    inset 0 0 10px rgba(110, 85, 45, 0.1),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.5),
+    0 3px 6px rgba(0, 0, 0, 0.35);
+}
+
+.mtg-mana-orb {
+  background: radial-gradient(
+    circle at 35% 32%,
+    #fffbeb 0%,
+    #fef08a 25%,
+    #eab308 60%,
+    #854d0e 95%
+  );
+  box-shadow:
+    inset 0 1px 2px rgba(255, 255, 255, 0.8),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.6),
+    0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.mtg-pt-box {
+  background: linear-gradient(
+    180deg,
+    #fdfcf9 0%,
+    #f3ede0 50%,
+    #dfd5c2 100%
+  );
+  box-shadow:
+    inset 0 1.5px 2px rgba(255, 255, 255, 0.9),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.4),
+    0 3px 6px rgba(0, 0, 0, 0.6);
+}
+
+/* Artistic filter presets for canvas & images */
+.art-filter-medieval {
+  filter: contrast(115%) saturate(125%) sepia(25%) brightness(95%);
+}
+
+.art-filter-cyberpunk {
+  filter: contrast(135%) saturate(160%) hue-rotate(190deg) brightness(105%);
+}
+
+.art-filter-anime {
+  filter: contrast(125%) saturate(145%) brightness(108%);
+}
+
+.art-filter-pixel {
+  image-rendering: pixelated;
+  filter: contrast(140%) saturate(130%);
+}
